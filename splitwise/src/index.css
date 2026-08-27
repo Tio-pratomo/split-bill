@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/* Equitable Ledger Design Tokens — Tailwind v4 CSS theme */
+@theme {
+  /* ─── Material Design Color Tokens ─── */
+  --color-primary: #004ac6;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #2563eb;
+  --color-on-primary-container: #eeefff;
+  --color-inverse-primary: #b4c5ff;
+  --color-secondary: #4b41e1;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #645efb;
+  --color-on-secondary-container: #fffbff;
+  --color-tertiary: #943700;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #bc4800;
+  --color-on-tertiary-container: #ffede6;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-surface: #f9f9ff;
+  --color-surface-dim: #d3daea;
+  --color-surface-bright: #f9f9ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f0f3ff;
+  --color-surface-container: #e7eefe;
+  --color-surface-container-high: #e2e8f8;
+  --color-surface-container-highest: #dce2f3;
+  --color-on-surface: #151c27;
+  --color-on-surface-variant: #434655;
+  --color-inverse-surface: #2a313d;
+  --color-inverse-on-surface: #ebf1ff;
+  --color-outline: #737686;
+  --color-outline-variant: #c3c6d7;
+  --color-surface-tint: #0053db;
+  --color-background: #f9f9ff;
+  --color-on-background: #151c27;
+  --color-surface-variant: #dce2f3;
+
+  /* ─── Application-Specific Colors ─── */
+  --color-debt-red: #DC2626;
+  --color-credit-green: #16A34A;
+  --color-neutral-gray: #9CA3AF;
+  --color-surface-bg: #F9FAFB;
+  --color-surface-card: #FFFFFF;
+  --color-subtle: #E5E7EB;
+  --color-text-main: #111827;
+
+  /* ─── Font Families ─── */
+  --font-sans: "Hanken Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* ─── Typography ─── */
+  --text-headline-lg: 30px;
+  --text-headline-sm: 24px;
+  --text-headline-md: 20px;
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-label-md: 14px;
+
+  --leading-headline-lg: 38px;
+  --leading-headline-sm: 32px;
+  --leading-headline-md: 28px;
+  --leading-body-lg: 28px;
+  --leading-body-md: 24px;
+  --leading-label-md: 20px;
+
+  /* ─── Letter Spacing ─── */
+  --tracking-tight: -0.02em;
+
+  /* ─── Spacing (matches prototype class names exactly) ─── */
+  --spacing-padding-card: 20px;
+  --spacing-sidebar-width: 340px;
+  --spacing-gutter: 24px;
+  --spacing-stack-sm: 8px;
+  --spacing-stack-md: 16px;
+  --spacing-stack-lg: 24px;
+  --spacing-margin-page: 32px;
+  --spacing-container-max: 1200px;
+
+  /* ─── Border Radius (from DESIGN.md) ─── */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+@utility max-w-site {
+  max-width: var(--spacing-container-max);
+}
+
+/* Material Symbols base styles */
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  vertical-align: middle;
+}
+
+/* Base body */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface-bg);
+  color: var(--color-on-surface);
+  min-height: 100vh;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Focus visible */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .mx-auto.flex.max-w-site.items-center.justify-between.gap-4.px-4.py-4.sm\:px-6.lg\:px-8 {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Number input: hide spinner for money fields */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}

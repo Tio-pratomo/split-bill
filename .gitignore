@@ -1,0 +1,98 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+**/dist/
+build/
+**/build/
+dist-ssr/
+.next/
+.nuxt/
+.output/
+coverage/
+**/coverage/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime data
+*.pid
+*.pid.lock
+pids/
+
+# Cache and temporary files
+.cache/
+.tmp/
+tmp/
+.temp/
+*.local
+*.tsbuildinfo
+.eslintcache
+.vite/
+.turbo/
+
+# Test output
+playwright-report/
+test-results/
+.nyc_output/
+
+# Database files used in local development
+*.sqlite
+*.sqlite3
+*.db
+
+# Uploads and local storage
+uploads/
+storage/
+
+# IDE and editor files
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.example.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Package manager caches
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Local deployment and hosting metadata
+.vercel/
+.netlify/
+
+# Certificates and private keys
+*.pem
+*.key
+*.crt
+
+# Prototype
+**/html/
+**/screenshot/
+.docs/
+.vercel
+.env*
