@@ -42,6 +42,28 @@ jobs:
           printf '{"orgId":"%s","projectId":"%s"}\n' "$VERCEL_ORG_ID" "$VERCEL_PROJECT_ID" > .vercel/project.json
           cat .vercel/project.json
 
+      - name: Verify Vercel credentials and project access
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "::error::Missing required Vercel secrets (VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID)."
+            exit 1
+          fi
+          echo "Token prefix: ${VERCEL_TOKEN:0:6}***"
+          echo "Org ID: $VERCEL_ORG_ID"
+          echo "Project ID: $VERCEL_PROJECT_ID"
+          # Probe token + project access before running pull/build/deploy
+          HTTP_CODE=$(curl -s -o /tmp/vercel-probe.json -w "%{http_code}" \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID")
+          echo "Probe HTTP status: $HTTP_CODE"
+          cat /tmp/vercel-probe.json
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "::error::Vercel token cannot access project $VERCEL_PROJECT_ID. Re-check VERCEL_TOKEN scope and VERCEL_PROJECT_ID."
+            exit 1
+          fi
+
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
